@@ -1,0 +1,3 @@
+<?php if(extension_loaded('zlib')){ob_start('ob_gzhandler');} header("Content-type: text/css"); ?>
+header.main.visible{position:absolute;top:54px}header.main:hover > menu.main{display:block }.noscript-msg{font-family:Arial,Helvetica,sans-serif;font-size:20px;line-height:50px;height:50px;text-align:center;border-top:solid 2px #870;border-bottom:solid 2px #870;background:#DD9;color:#000}
+<?php if(extension_loaded('zlib')){ob_end_flush();}?>
