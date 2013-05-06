@@ -24,7 +24,7 @@
 	<meta name="copyright" content="Designed by Pablo Cazorla under licence Creative Commons - 2013." />
 	
 	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>	
-	<link href="<?php bloginfo('template_url'); ?>/style.php" rel="stylesheet" type="text/css" />
+	<link href="<?php bloginfo('template_url'); ?>/style.css" rel="stylesheet" type="text/css" />
 	
 	<noscript><link href="<?php bloginfo('template_url'); ?>/noscript-style.php" rel="stylesheet" type="text/css" /></noscript>
 	

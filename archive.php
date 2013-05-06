@@ -5,7 +5,7 @@
 <article id="portfolio" class="main">
 	<nav class="breadcrumbs">
 		<div class="wrap">
-			<a rel="category tag" title="View all posts in Portfolio" href="<?php bloginfo('url'); ?>/portfolio">Portfolio</a>
+			<a rel="category tag" title="View all posts" href="<?php bloginfo('url'); ?>">Blog</a>
 			<span class="separator"></span>
 			<?php echo $cat_name; ?>
 		</div>
@@ -20,11 +20,12 @@
 				<?php while (have_posts()) : the_post(); ?>	   
 			<figure>			
 				<a href="<?php the_permalink(); ?>" class="explain-work" rel="<?php the_ID();?>">
-					<?php if(has_post_thumbnail()): the_post_thumbnail('thumbnail'); endif; ?>	
+					<?php the_post_thumbnail('thumbnail');?>
 				</a>									
 				<figcaption>
-					<h2><?php the_title(); ?></h2>
+					<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 					<div class="categories"><?php the_category(', '); ?></div>
+					<?php the_excerpt(); ?>
 				</figcaption>						
 			</figure>
 			<?php endwhile; ?>

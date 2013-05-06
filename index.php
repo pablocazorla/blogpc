@@ -1,31 +1,46 @@
 <?php get_header(); ?>
-<article id="home-article" class="main">	
-	<div class="home-presentation">
-		<div class="title">
-			<h1>I am<br>illustrator<br>and<br>concept artist</h1>
-		</div>
-		<a class="home-link" title="View my Portfolio" href="<?php bloginfo('url'); ?>/portfolio">Portfolio</a>
-		<img class="portrait" src="<?php bloginfo('template_url'); ?>/img/home.jpg"/>
-	</div>
+<script type="text/javascript">pageid = 'portfolio';</script>
+
+
+<article id="portfolio" class="main">	
+	<section class="summary wrap clearfix">		
+		<h1>Blog</h1>
+	</section>
 	<section class="content wrap">
-		<h2 class="last-work">Last work</h2>
 		<div class="gallery clearfix">
-			<?php query_posts('posts_per_page=3'); while ( have_posts() ) : the_post(); ?>	    
+			<?php if (have_posts()) :?>
+				<?php while (have_posts()) : the_post(); ?>	   
 			<figure>			
 				<a href="<?php the_permalink(); ?>" class="explain-work" rel="<?php the_ID();?>">
-					<?php if(has_post_thumbnail()): the_post_thumbnail('thumbnail'); endif; ?>	
+					<?php the_post_thumbnail('thumbnail');?>
 				</a>									
 				<figcaption>
-					<h2><?php the_title(); ?></h2>
+					<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 					<div class="categories"><?php the_category(', '); ?></div>
+					<?php the_excerpt(); ?>
 				</figcaption>						
-			</figure>	   
-			<?php endwhile; wp_reset_query(); ?>
+			</figure>
+			<?php endwhile; ?>
+			<?php else :?>
+				<h3><?php _e('Sorry, works not found','pcazorla'); ?>!</h3>
+			<?php endif; ?>	
 		</div>
-		<div class="align-center">
-			<a title="More of my Portfolio" href="<?php bloginfo('url'); ?>/portfolio">More...</a>
-		</div>		
+		
+		<?php if (show_posts_nav()) : ?>
+		<nav class="navPages">		
+		<?php global $wp_query;
+		$big = 999999999; // need an unlikely integer		
+		echo paginate_links( array(
+			'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $wp_query->max_num_pages,
+			'prev_text' => 'Prev',
+			'next_text' => 'Next'
+		) );
+		?>
+		</nav>
+		<?php endif; ?>	
 	</section>
 </article>
-
 <?php get_footer(); ?>
